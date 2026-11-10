@@ -123,18 +123,26 @@ export function QuestionCard({
             styles = 'border-rose-500 bg-rose-50 ring-2 ring-rose-200'
           }
 
+          const showLetterBadge = /^[A-D]$/.test(option.id)
+
           return (
             <button
               key={option.id}
               type="button"
               disabled={showCorrectAnswer}
               onClick={() => onSelect(option.id)}
-              className={`flex w-full items-start gap-3 rounded-xl border px-4 py-3 text-left transition ${styles}`}
+              className={`flex w-full items-center gap-3 rounded-xl border px-4 py-3 text-left transition ${styles}`}
             >
-              <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm font-semibold text-slate-700">
-                {option.id}
-              </span>
-              <span className="text-sm text-slate-800 sm:text-base">{option.text}</span>
+              {showLetterBadge ? (
+                <>
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm font-semibold text-slate-700">
+                    {option.id}
+                  </span>
+                  <span className="text-sm text-slate-800 sm:text-base">{option.text}</span>
+                </>
+              ) : (
+                <span className="text-base font-medium text-slate-800">{option.text}</span>
+              )}
             </button>
           )
         })}
