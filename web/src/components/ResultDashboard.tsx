@@ -31,21 +31,21 @@ export function ResultDashboard({ attempt, onReview, onRetake, onHome }: ResultD
           <button
             type="button"
             onClick={onReview}
-            className="rounded-xl bg-blue-600 px-4 py-3 text-base font-semibold text-white hover:bg-blue-700"
+            className="min-h-12 rounded-xl bg-blue-600 px-4 py-3 text-base font-semibold text-white hover:bg-blue-700"
           >
             Review answers
           </button>
           <button
             type="button"
             onClick={onRetake}
-            className="rounded-xl border border-slate-200 px-4 py-3 text-base font-semibold text-slate-700 hover:bg-slate-50"
+            className="min-h-12 rounded-xl border border-slate-200 px-4 py-3 text-base font-semibold text-slate-700 hover:bg-slate-50"
           >
             Try again
           </button>
           <button
             type="button"
             onClick={onHome}
-            className="rounded-xl px-4 py-3 text-base font-medium text-slate-500 hover:text-slate-700"
+            className="min-h-12 rounded-xl px-4 py-3 text-base font-medium text-slate-500 hover:text-slate-700"
           >
             Home
           </button>

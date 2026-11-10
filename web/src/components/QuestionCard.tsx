@@ -37,10 +37,10 @@ function QuestionImage({ src, alt }: { src: string; alt: string }) {
         <img
           src={url}
           alt={alt}
-          className="mx-auto max-h-64 w-auto max-w-full object-contain"
+          className="mx-auto max-h-56 w-auto max-w-full object-contain sm:max-h-64"
           onError={() => setFailed(true)}
         />
-        <span className="absolute right-2 top-2 inline-flex items-center gap-1 rounded bg-slate-900/70 px-2 py-1 text-xs text-white opacity-0 transition group-hover:opacity-100">
+        <span className="absolute right-2 top-2 inline-flex items-center gap-1 rounded bg-slate-900/70 px-2 py-1 text-xs text-white opacity-100 transition sm:opacity-0 sm:group-hover:opacity-100">
           <Expand className="h-3 w-3" aria-hidden />
           Enlarge
         </span>
@@ -82,13 +82,13 @@ export function QuestionCard({
   markedForReview = false,
 }: QuestionCardProps) {
   return (
-    <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+    <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
       <p className="mb-3 text-sm font-medium text-slate-500">
         Question {examIndex + 1} of {totalQuestions}
         {markedForReview ? ' · Marked' : ''}
       </p>
 
-      <h2 className="text-lg font-medium leading-relaxed text-slate-900 sm:text-xl">
+      <h2 className="text-base font-medium leading-relaxed text-slate-900 sm:text-xl">
         {question.question}
       </h2>
 
@@ -131,14 +131,16 @@ export function QuestionCard({
               type="button"
               disabled={showCorrectAnswer}
               onClick={() => onSelect(option.id)}
-              className={`flex w-full items-center gap-3 rounded-xl border px-4 py-3 text-left transition ${styles}`}
+              className={`flex min-h-12 w-full items-center gap-3 rounded-xl border px-4 py-3 text-left transition ${styles}`}
             >
               {showLetterBadge ? (
                 <>
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm font-semibold text-slate-700">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm font-semibold text-slate-700">
                     {option.id}
                   </span>
-                  <span className="text-sm text-slate-800 sm:text-base">{option.text}</span>
+                  <span className="text-sm leading-snug text-slate-800 sm:text-base">
+                    {option.text}
+                  </span>
                 </>
               ) : (
                 <span className="text-base font-medium text-slate-800">{option.text}</span>

@@ -28,11 +28,11 @@ export function Dashboard({
   const canStart = usableCount >= EXAM_QUESTION_COUNT
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-xl flex-col justify-center px-4 py-10">
-      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+    <div className="mx-auto flex min-h-screen max-w-xl flex-col justify-center px-4 py-8 sm:py-10">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
         <p className="text-base text-blue-700">Assalam Alaikum</p>
-        <h1 className="mt-2 text-3xl font-bold text-slate-900">Hi Sabeena Love</h1>
-        <p className="mt-3 text-lg text-slate-600">Can we start the exam?</p>
+        <h1 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">Hi Sabeena Love</h1>
+        <p className="mt-3 text-base text-slate-600 sm:text-lg">Can we start the exam?</p>
 
         <p className="mt-6 text-sm text-slate-500">
           {EXAM_QUESTION_COUNT} questions · {formatDuration(EXAM_DURATION_MS)}
@@ -52,7 +52,7 @@ export function Dashboard({
           type="button"
           onClick={onStart}
           disabled={!canStart}
-          className="mt-6 w-full rounded-xl bg-blue-600 px-5 py-3 text-base font-semibold text-white hover:bg-blue-700 disabled:bg-slate-300"
+          className="mt-6 min-h-12 w-full rounded-xl bg-blue-600 px-5 py-3 text-base font-semibold text-white hover:bg-blue-700 disabled:bg-slate-300"
         >
           Yes, let&apos;s begin
         </button>

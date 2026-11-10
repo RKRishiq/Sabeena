@@ -17,20 +17,20 @@ export function ExamHeader({
   onSubmit,
 }: ExamHeaderProps) {
   return (
-    <header className="sticky top-0 z-20 border-b border-slate-200 bg-white">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
-        <div>
+    <header className="sticky top-0 z-20 border-b border-slate-200 bg-white pt-[env(safe-area-inset-top)]">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-3 py-2.5 sm:gap-3 sm:px-4 sm:py-3">
+        <div className="min-w-0">
           <p className="text-sm font-semibold text-slate-900">Exam</p>
-          <p className="text-xs text-slate-500">
+          <p className="truncate text-xs text-slate-500">
             Done {answeredCount} · Left {unansweredCount}
           </p>
         </div>
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex shrink-0 items-center gap-2">
           <ExamTimer remainingMs={remainingMs} warning={warning} />
           <button
             type="button"
             onClick={onSubmit}
-            className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 sm:px-4"
+            className="min-h-10 rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 sm:px-4"
           >
             Submit
           </button>

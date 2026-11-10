@@ -242,7 +242,7 @@ export default function App() {
           unansweredCount={unansweredCount}
           onSubmit={() => setShowSubmitConfirm(true)}
         />
-        <main className="mx-auto grid max-w-6xl gap-4 px-4 py-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+        <main className="mx-auto grid max-w-6xl gap-4 px-3 pb-24 pt-4 sm:px-4 sm:py-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:pb-6">
           <QuestionCard
             question={currentQuestion}
             examIndex={session.currentIndex}
