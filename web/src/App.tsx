@@ -174,6 +174,7 @@ export default function App() {
       ...session,
       currentIndex: Math.max(0, Math.min(session.questionIds.length - 1, index)),
     })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const toggleMark = () => {
@@ -242,7 +243,7 @@ export default function App() {
           unansweredCount={unansweredCount}
           onSubmit={() => setShowSubmitConfirm(true)}
         />
-        <main className="mx-auto grid max-w-6xl gap-4 px-3 pb-24 pt-4 sm:px-4 sm:py-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:pb-6">
+        <main className="mx-auto grid max-w-6xl gap-4 px-3 pb-6 pt-4 sm:px-4 sm:py-6 lg:grid-cols-[minmax(0,1fr)_320px]">
           <QuestionCard
             question={currentQuestion}
             examIndex={session.currentIndex}
@@ -250,6 +251,14 @@ export default function App() {
             selectedAnswer={session.answers[currentId]}
             onSelect={selectAnswer}
             markedForReview={session.markedForReview.includes(currentId)}
+            nav={{
+              canPrev: session.currentIndex > 0,
+              canNext: session.currentIndex < session.questionIds.length - 1,
+              isMarked: session.markedForReview.includes(currentId),
+              onPrev: () => navigate(session.currentIndex - 1),
+              onNext: () => navigate(session.currentIndex + 1),
+              onMark: toggleMark,
+            }}
           />
           <QuestionNavigation
             total={session.questionIds.length}

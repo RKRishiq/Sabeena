@@ -1,7 +1,16 @@
 import { useState } from 'react'
-import { Expand, ImageOff, X } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Expand, ImageOff, X } from 'lucide-react'
 import { assetUrl } from '../lib/assets'
 import type { Question } from '../types'
+
+interface QuestionNavControls {
+  canPrev: boolean
+  canNext: boolean
+  isMarked: boolean
+  onPrev: () => void
+  onNext: () => void
+  onMark: () => void
+}
 
 interface QuestionCardProps {
   question: Question
@@ -11,6 +20,7 @@ interface QuestionCardProps {
   onSelect: (optionId: string) => void
   showCorrectAnswer?: boolean
   markedForReview?: boolean
+  nav?: QuestionNavControls
 }
 
 function QuestionImage({ src, alt }: { src: string; alt: string }) {
@@ -37,7 +47,7 @@ function QuestionImage({ src, alt }: { src: string; alt: string }) {
         <img
           src={url}
           alt={alt}
-          className="mx-auto max-h-56 w-auto max-w-full object-contain sm:max-h-64"
+          className="mx-auto max-h-48 w-auto max-w-full object-contain sm:max-h-64"
           onError={() => setFailed(true)}
         />
         <span className="absolute right-2 top-2 inline-flex items-center gap-1 rounded bg-slate-900/70 px-2 py-1 text-xs text-white opacity-100 transition sm:opacity-0 sm:group-hover:opacity-100">
@@ -80,6 +90,7 @@ export function QuestionCard({
   onSelect,
   showCorrectAnswer = false,
   markedForReview = false,
+  nav,
 }: QuestionCardProps) {
   return (
     <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
@@ -104,7 +115,7 @@ export function QuestionCard({
         </div>
       ) : null}
 
-      <div className="mt-6 space-y-2">
+      <div className="mt-5 space-y-2">
         {question.options.map((option) => {
           const isSelected = selectedAnswer === option.id
           const isCorrect = showCorrectAnswer && option.id === question.correct_answer
@@ -149,6 +160,38 @@ export function QuestionCard({
           )
         })}
       </div>
+
+      {nav && !showCorrectAnswer ? (
+        <div className="mt-5 flex gap-2">
+          <button
+            type="button"
+            onClick={nav.onPrev}
+            disabled={!nav.canPrev}
+            className="inline-flex min-h-12 flex-1 items-center justify-center gap-1 rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 disabled:opacity-40"
+          >
+            <ChevronLeft className="h-4 w-4" aria-hidden />
+            Back
+          </button>
+          <button
+            type="button"
+            onClick={nav.onMark}
+            className={`min-h-12 rounded-xl px-3 text-sm font-semibold ${
+              nav.isMarked ? 'bg-violet-100 text-violet-800' : 'bg-slate-100 text-slate-700'
+            }`}
+          >
+            {nav.isMarked ? 'Marked' : 'Mark'}
+          </button>
+          <button
+            type="button"
+            onClick={nav.onNext}
+            disabled={!nav.canNext}
+            className="inline-flex min-h-12 flex-[1.4] items-center justify-center gap-1 rounded-xl bg-blue-600 text-sm font-semibold text-white disabled:opacity-40"
+          >
+            Next
+            <ChevronRight className="h-4 w-4" aria-hidden />
+          </button>
+        </div>
+      ) : null}
 
       {showCorrectAnswer ? (
         <div className="mt-4 rounded-lg bg-slate-50 px-3 py-2 text-sm text-slate-700">
