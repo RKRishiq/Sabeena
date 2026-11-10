@@ -1,0 +1,18 @@
+# Dependencies and build
+web/node_modules/
+web/dist/
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.local
+*.log
