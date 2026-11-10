@@ -29,11 +29,21 @@ body {
   min-height: 100vh;
 }
 
-button {
+button,
+[role='button'],
+a {
   font: inherit;
+  cursor: pointer;
 }
 
-button:disabled {
+button:disabled,
+[aria-disabled='true'] {
   cursor: not-allowed;
   opacity: 0.55;
+}
+
+/* Clickable image enlarge / lightbox backdrop */
+button img,
+.cursor-zoom-in {
+  cursor: zoom-in;
 }

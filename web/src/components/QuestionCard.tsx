@@ -32,7 +32,7 @@ function QuestionImage({ src, alt }: { src: string; alt: string }) {
       <button
         type="button"
         onClick={() => setLightbox(true)}
-        className="group relative max-w-full overflow-hidden rounded-lg border border-slate-200 bg-white p-2 text-left"
+        className="group relative max-w-full cursor-zoom-in overflow-hidden rounded-lg border border-slate-200 bg-white p-2 text-left"
       >
         <img
           src={url}
@@ -47,14 +47,14 @@ function QuestionImage({ src, alt }: { src: string; alt: string }) {
       </button>
       {lightbox ? (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/70 p-4"
+          className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-slate-900/70 p-4"
           role="dialog"
           aria-modal="true"
           onClick={() => setLightbox(false)}
         >
           <button
             type="button"
-            className="absolute right-4 top-4 rounded-full bg-white p-2 text-slate-700 shadow"
+            className="absolute right-4 top-4 cursor-pointer rounded-full bg-white p-2 text-slate-700 shadow"
             onClick={() => setLightbox(false)}
             aria-label="Close image"
           >
